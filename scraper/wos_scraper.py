@@ -245,5 +245,4 @@ class Scraper():
 
         results, errors = self.information_collector(dict_total)
 
-        cleaner(results).to_excel(f"{self.directory}//{self.country}_Results.xlsx", index=False)
-        errors.to_excel(f"{self.directory}//{self.country}_Errors.xlsx", index=False)
+        return cleaner(results), errors
