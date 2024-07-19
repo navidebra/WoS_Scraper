@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-rcij_fk1b6g8f$^ka29(w$i0z(ww%+v2@wxe@u%me&xdm6h*c^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wosscraper.onrender.com']
+ALLOWED_HOSTS = ['wosscraper.onrender.com', '127.0.0.1']
 
 
 # Application definition

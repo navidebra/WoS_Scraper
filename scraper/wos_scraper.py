@@ -231,7 +231,11 @@ class Scraper():
         nums_list = range(0, max_num)
 
         urls = [self.url.format(self.country, num) for num in nums_list]
+
         n = len(nums_list)
+
+        if n == 0:
+            n = 1
 
         with ThreadPoolExecutor(max_workers=n) as pool:
             responses = list(pool.map(soup_extractor, urls))
@@ -240,9 +244,18 @@ class Scraper():
         return found_dict
 
     def initiate(self):
-        total_pages = self.total_page_numbers(self.url)
+        try:
+            total_pages = self.total_page_numbers(self.url)
+        except IndexError:
+            total_pages = 0
+
         dict_total = self.local_dict_extractor(total_pages)
 
         results, errors = self.information_collector(dict_total)
 
-        return cleaner(results), errors
+        # Save dataframes to CSV files
+        results_file = 'results.csv'
+        errors_file = 'errors.csv'
+
+        results.to_csv(results_file, index=False)
+        errors.to_csv(errors_file, index=False)
