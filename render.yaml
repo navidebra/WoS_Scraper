@@ -1,13 +1,13 @@
 databases:
   - name: mysitedb
     plan: free
-    databaseName: wos_scraper
+    databaseName: mysitedb
     user: root
 
 services:
   - type: web
     plan: free
-    name: wos_scraper
+    name: WosScraper
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker"
